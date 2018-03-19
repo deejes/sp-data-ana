@@ -38,8 +38,8 @@ def parse(url):
             if not NAME :
                 sleep(10)
                 raise ValueError('captcha', page.status_code); 
-            print ('sleeping main')
-            sleep(10)
+            # print ('sleeping main')
+            # sleep(10)
             
             data = {
                     'NAME':NAME,
