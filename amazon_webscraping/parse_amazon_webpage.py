@@ -34,6 +34,7 @@ def parse(url):
             import pdb; pdb.set_trace()            
             if not ORIGINAL_PRICE:
                 ORIGINAL_PRICE = SALE_PRICE
+            # TODO change to capture specific errors
             #retrying in case of caotcha
             if not NAME :
                 sleep(10)
