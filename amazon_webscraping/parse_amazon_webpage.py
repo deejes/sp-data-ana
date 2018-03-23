@@ -37,16 +37,15 @@ def parse(url):
             import pdb; pdb.set_trace()            
             if not ORIGINAL_PRICE:
                 ORIGINAL_PRICE = SALE_PRICE
-            # TODO change to capture specific errors
-            #retrying in case of caotcha
+            
             if page.status_code == 503:
                 sleep(10)
                 raise ValueError('captcha')
+            
             if page.status_code == 404:
                 print(url,"not found. remove from asin list")
+                # TODO - log asin with 404
                 continue
-            # print ('sleeping main')
-            # sleep(10)
             
             data = {
                     'NAME':NAME,
