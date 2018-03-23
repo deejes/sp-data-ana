@@ -5,7 +5,8 @@ from time import sleep
 from parse_amazon_webpage import parse
 
 
-asin_list = ['B000HVYF44']
+asin_list = ['B002JINW4W']
+
 
 # extracted_data = []
 
