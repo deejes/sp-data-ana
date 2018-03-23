@@ -41,7 +41,7 @@ def parse(url):
             #retrying in case of caotcha
             if page.status_code == 503:
                 sleep(10)
-                raise ValueError('captcha'); 
+                raise ValueError('captcha')
             if page.status_code == 404:
                 print(url,"not found. remove from asin list")
                 continue
