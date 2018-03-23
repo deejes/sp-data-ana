@@ -6,11 +6,12 @@ from parse_amazon_webpage import parse
 from asin_list import AsinList
 import random
 
-# asin_list = []
-# for _ in range (10):
-#     asin_list.append(AsinList[random.randint(0,len(AsinList))])
+asin_list = []
+for _ in range (10):
+    asin_list.append(AsinList[random.randint(0,len(AsinList))])
 
-asin_list = ["B00GAYSNPY"]
+# asin_list = ["B01LWOC3JO"]
+# http://www.amazon.com/dp/
 
 # extracted_data = []
 

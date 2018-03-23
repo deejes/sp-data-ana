@@ -14,13 +14,13 @@ def parse(url):
     page = requests.get(url,headers=headers)
     for i in range(20):
         try:
-            # import pdb; pdb.set_trace()
+            import pdb; pdb.set_trace()
             doc = html.fromstring(page.content)
             XPATH_NAME = '//h1[@id="title"]//text()'
             XPATH_ORIGINAL_PRICE = '//*[@class="a-text-strike"]//text()'
             XPATH_SALE_PRICE = '//span[contains(@id,"ourprice") or contains(@id,"saleprice")]/text()'
             XPATH_CATEGORY = '//a[@class="a-link-normal a-color-tertiary"]//text()'
-            XPATH_AVAILABILITY = '//span[@id="availability"]//text() | //*[@id="availability"]/span'
+            XPATH_AVAILABILITY = '//span[@id="availability"]//text() | //*[@id="availability"]/span//text()'
             XPATH_PRODUCT_RANK = '//*[@id="SalesRank"]//text()'
             RAW_NAME = doc.xpath(XPATH_NAME)
             RAW_SALE_PRICE = doc.xpath(XPATH_SALE_PRICE)
@@ -39,9 +39,12 @@ def parse(url):
                 ORIGINAL_PRICE = SALE_PRICE
             # TODO change to capture specific errors
             #retrying in case of caotcha
-            if not NAME :
+            if page.status_code == 503:
                 sleep(10)
-                raise ValueError('captcha', page.status_code); 
+                raise ValueError('captcha'); 
+            if page.status_code == 404:
+                print(url,"not found. remove from asin list")
+                continue
             # print ('sleeping main')
             # sleep(10)
             
