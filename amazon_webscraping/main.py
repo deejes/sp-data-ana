@@ -19,10 +19,10 @@ for _ in range (10):
 for i in asin_list:
     url = "http://www.amazon.com/dp/"+i
     print ("Processing: "+url)
-    print (parse(url))
+    single_url_data = (parse(url))
     import pdb; pdb.set_trace()
     # extracted_data.append(parse(url))
-    # sleep(5)
+    sleep(1)
 # f=open('data.json','w')
 # json.dump(extracted_data,f,indent=4)
 

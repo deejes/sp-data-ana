@@ -46,16 +46,15 @@ def parse(url):
                 print(url,"not found. remove from asin list")
                 # TODO - log asin with 404
                 continue
-            
-            data = {
-                    'NAME':NAME,
-                    'SALE_PRICE':SALE_PRICE,
-                    'CATEGORY':CATEGORY,
-                    'ORIGINAL_PRICE':ORIGINAL_PRICE,
-                    'AVAILABILITY':AVAILABILITY,
-                    'URL':url,
-                    "PRODUCT_RANK" : PRODUCT_RANK,
-                    }
+
+            data =[ NAME,
+                    SALE_PRICE,
+                    CATEGORY,
+                    ORIGINAL_PRICE,
+                    AVAILABILITY,
+                    url,
+                    PRODUCT_RANK
+            ]
 
             return data
         except Exception as e:
