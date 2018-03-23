@@ -2,7 +2,7 @@ from lxml import html
 import csv,os,json
 import requests
 from time import sleep
-
+from product_rank_parser import parse_product_rank
 
 def parse(url):
     """ Takes a amazon/dp/asn url, returns a dictonary containing page metrics"""
@@ -14,14 +14,14 @@ def parse(url):
     page = requests.get(url,headers=headers)
     for i in range(20):
         try:
-            # import pdb;pdb.set
+            # import pdb; pdb.set_trace()
             doc = html.fromstring(page.content)
             XPATH_NAME = '//h1[@id="title"]//text()'
+            XPATH_ORIGINAL_PRICE = '//*[@class="a-text-strike"]//text()'
             XPATH_SALE_PRICE = '//span[contains(@id,"ourprice") or contains(@id,"saleprice")]/text()'
-            XPATH_ORIGINAL_PRICE = '//td[contains(text(),"List Price") or contains(text(),"M.R.P") or contains(text(),"Price")]/following-sibling::td/text()'
             XPATH_CATEGORY = '//a[@class="a-link-normal a-color-tertiary"]//text()'
-            XPATH_AVAILABILITY = '//div[@id="availability"]//text()'
-            XPATH_PRODUCT_RANK = '//li[contains(@id,"SalesRank")]//text()'
+            XPATH_AVAILABILITY = '//span[@id="availability"]//text() | //*[@id="availability"]/span'
+            XPATH_PRODUCT_RANK = '//*[@id="SalesRank"]//text()'
             RAW_NAME = doc.xpath(XPATH_NAME)
             RAW_SALE_PRICE = doc.xpath(XPATH_SALE_PRICE)
             RAW_CATEGORY = doc.xpath(XPATH_CATEGORY)
@@ -33,10 +33,7 @@ def parse(url):
             CATEGORY = ' > '.join([i.strip() for i in RAW_CATEGORY]) if RAW_CATEGORY else None
             ORIGINAL_PRICE = ''.join(RAW_ORIGINAL_PRICE).strip() if RAW_ORIGINAL_PRICE else None
             AVAILABILITY = ''.join(RAw_AVAILABILITY).strip() if RAw_AVAILABILITY else None
-            
-            
-            
-            PRODUCT_RANK = ''.join(RAW_PRODUCT_RANK).strip() if RAW_PRODUCT_RANK else None
+            PRODUCT_RANK = parse_product_rank(RAW_PRODUCT_RANK) if RAW_PRODUCT_RANK else None
             import pdb; pdb.set_trace()            
             if not ORIGINAL_PRICE:
                 ORIGINAL_PRICE = SALE_PRICE
