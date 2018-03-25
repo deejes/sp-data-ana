@@ -1,31 +1,29 @@
-from asin_list import AsinList
+import csv
+from pathlib import Path
 
-# import pdb; pdb.set_trace()
-
-# Given a sorted array of integers and a target value, determine if there exists two integers in the array that sum up to the target value.
-
-
-import random
-
-arr = [1]
-
-for _ in range(1000):
-    arr.append(arr[-1]+random.randint(1,19))
-
-first = (arr[random.randint(0,len(arr))])  
-second = (arr[random.randint(0,len(arr))])
-rand_sum =  first + second
+headers = ['NAME',
+           'SALE_PRICE',
+           'CATEGORY',
+           'ORIGINAL_PRICE',
+           'AVAILABILITY',
+           'url',
+           'PRODUCT_RANK'
+          ]     
 
 
-def sum_elements(arr,value):
-    i = 0
-    j = len(arr) - 1
-    while i < j:
-        if arr[i]+arr[j] == value:
-            return (arr[i]+arr[j])
-        elif arr[i]+arr[j] < value:
-            i += 1
-        else:
-            j -= 1
+def initalise_write_headers():
+    my_file = Path("./amazon_data.txt")
+    if not my_file.is_file():
+        with open('amazon_data.txt', 'wt') as myfile:
+            wr = csv.writer(myfile)
+            wr.writerow(headers)
 
-print (sum_elements(arr,rand_sum) == first+second)
+input_list = ['Fetish Fantasy Series Japanese Silk Rope, 35 Feet, Erotic Pink', 'http://www.amazon.com/dp/B00IF238UE', '#1,674,724 in Health & Household (,See Top 100 in Health & Household']
+
+def write_row(amz_webpage_metrics):
+    with open('amazon_data.txt', 'at') as myfile:
+        wr = csv.writer(myfile)
+        # import pdb; pdb.set_trace()
+        wr.writerow(amz_webpage_metrics)
+
+write_row(input_list)

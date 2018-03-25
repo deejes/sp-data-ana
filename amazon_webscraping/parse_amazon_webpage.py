@@ -14,7 +14,7 @@ def parse(url):
     page = requests.get(url,headers=headers)
     for i in range(20):
         try:
-            import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
             doc = html.fromstring(page.content)
             XPATH_NAME = '//h1[@id="title"]//text()'
             XPATH_ORIGINAL_PRICE = '//*[@class="a-text-strike"]//text()'
@@ -34,7 +34,7 @@ def parse(url):
             ORIGINAL_PRICE = ''.join(RAW_ORIGINAL_PRICE).strip() if RAW_ORIGINAL_PRICE else None
             AVAILABILITY = ''.join(RAw_AVAILABILITY).strip() if RAw_AVAILABILITY else None
             PRODUCT_RANK = parse_product_rank(RAW_PRODUCT_RANK) if RAW_PRODUCT_RANK else None
-            import pdb; pdb.set_trace()            
+            # import pdb; pdb.set_trace()            
             if not ORIGINAL_PRICE:
                 ORIGINAL_PRICE = SALE_PRICE
             
