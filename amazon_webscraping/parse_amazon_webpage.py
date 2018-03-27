@@ -44,8 +44,10 @@ def parse(url):
             
             if page.status_code == 404:
                 print(url,"not found. remove from asin list")
+                with open('asn_not_found.txt', 'at') as myfile:
+                    myfile.write(str(url))
                 # TODO - log asin with 404
-                continue
+                return ([0 for _ in range(7) ])
 
             data =[ NAME,
                     SALE_PRICE,
