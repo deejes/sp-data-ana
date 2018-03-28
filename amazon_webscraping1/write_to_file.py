@@ -19,7 +19,7 @@ def initalise_write_headers():
             wr.writerow(headers)
 
 # input_list = ['Fetish Fantasy Series Japanese Silk Rope, 35 Feet, Erotic Pink', 'http://www.amazon.com/dp/B00IF238UE', '#1,674,724 in Health & Household (,See Top 100 in Health & Household']
-input_list_2 = ['Sex Ties & Bondage Tape - Black', '$9.16', 'Health & Household > Sexual Wellness > Bondage Gear & Accessories > Restraints', '$9.16', 'In Stock.', 'http://www.amazon.com/dp/B00B6KSDMK', None]
+# input_list_2 = ['Sex Ties & Bondage Tape - Black', '$9.16', 'Health & Household > Sexual Wellness > Bondage Gear & Accessories > Restraints', '$9.16', 'In Stock.', 'http://www.amazon.com/dp/B00B6KSDMK', None]
 
 
 
@@ -31,8 +31,8 @@ def write_row(amz_webpage_metrics):
         wr.writerow(amz_webpage_metrics)
 
 
-initalise_write_headers()
-write_row(input_list_2)
+# initalise_write_headers()
+# write_row(input_list_2)
 
 
 

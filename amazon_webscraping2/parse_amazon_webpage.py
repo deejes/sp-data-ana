@@ -38,14 +38,14 @@ def parse(url):
             if not ORIGINAL_PRICE:
                 ORIGINAL_PRICE = SALE_PRICE
             
-            if page.status_code == 503:
-                sleep(10)
+            if page.status_code == 503 or page.status_code == 403:
                 raise ValueError('captcha')
+                break
             
             if page.status_code == 404:
                 print(url,"not found. remove from asin list")
                 with open('asn_not_found.txt', 'at') as myfile:
-                    myfile.write(str(url))
+                    myfile.write(str(url)+"\n")
                 # TODO - log asin with 404
                 return ([0 for _ in range(7) ])
 
