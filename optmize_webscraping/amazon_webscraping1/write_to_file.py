@@ -11,10 +11,10 @@ headers = ['NAME',
           ]     
 
 
-def initalise_write_headers():
-    my_file = Path("./amazon_data.csv")
+def initalise_write_headers(results_output_file):
+    my_file = Path("./" + results_output_file)
     if not my_file.is_file():
-        with open('amazon_data.csv', 'wt') as myfile:
+        with open(results_output_file, 'wt') as myfile:
             wr = csv.writer(myfile)
             wr.writerow(headers)
 
@@ -23,10 +23,10 @@ def initalise_write_headers():
 
 
 
-def write_row(amz_webpage_metrics):
+def write_row(amz_webpage_metrics,results_output_file):
     # Takes a list of amazon webpage metrics, appends to amazon_data.csv
     amz_webpage_metrics = [0 if e is None else e for e in amz_webpage_metrics]
-    with open('amazon_data.csv', 'at') as myfile:
+    with open(results_output_file, 'at') as myfile:
         wr = csv.writer(myfile,quoting=1)
         wr.writerow(amz_webpage_metrics)
 
