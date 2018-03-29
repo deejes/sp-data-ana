@@ -6,7 +6,7 @@ names_list = ['asin_list1', 'asin_list2', 'asin_list3', 'asin_list4', 'asin_list
 def start_scrape_workers(10):  # starts n workers to process the queue
     for _ in range(n):
         request_worker_process = Process(target=scrape_urls_list,
-                                         args=(input,response_queue,acceptable_website_response_wait))
+                                         args=(input_,response_queue,acceptable_website_response_wait))
         request_worker_process.start()
 
 

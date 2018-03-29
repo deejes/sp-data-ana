@@ -4,7 +4,6 @@ import requests
 from time import sleep
 from lxml import html
 from parse_amazon_webpage import parse
-from asin_list import AsinList
 from write_to_file import initalise_write_headers, write_row
 
 
