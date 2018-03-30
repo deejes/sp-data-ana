@@ -32,10 +32,10 @@ for x in range(number_of_sublists):
         start += length_of_sublist
         end += length_of_sublist
 
-# for name in names_list:
-#     with open (name+'.txt', 'wt') as filename:
-#         simplejson.dump(master_dict[name],filename)
-#     print (len(master_dict[name]))
+for name in names_list:
+    with open (name+'.py', 'wt') as filename:
+        simplejson.dump(master_dict[name],filename)
+    print (len(master_dict[name]))
 
 
 print (names_list)
