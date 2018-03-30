@@ -1,41 +1,54 @@
 import math
 import simplejson
-
 from asin_list_original import AsinList
 
-big_list = AsinList
+""" This function takes a python list and splits it up into n sublists,
+and writes each to a file. """
 
-number_of_sublists = 10
+def big_list_splitter(big_list,number_of_sublists):
+    length_of_sublists = math.floor(len(big_list)/number_of_sublists)
+    master_dict = {}
+    names_list = []
 
-length_of_sublist = math.floor(len(big_list)/number_of_sublists)
+    for x in range(1,number_of_sublists+1):
+        name = 'asin_list' + str(x) +'.py'
+        names_list.append(name)
+        master_dict[name] = []
+    # return names_list
 
-print (length_of_sublist)
+    start = 0
+    end = length_of_sublists
 
-master_dict = {}
-names_list = []
+    for x in range(number_of_sublists):   
+        """splits the list and stores it in the dictionary"""
+        # this line gives the last sublist an additional modulo elements
+        if x == number_of_sublists - 1:
+            master_dict[names_list[x]] = big_list[start:]
+        else:        
+            master_dict[names_list[x]] = big_list[start:end]
+            start += length_of_sublists
+            end += length_of_sublists
 
-for x in range(1,number_of_sublists+1):
-    name = 'asin_list' + str(x)
-    names_list.append(name)
-    master_dict[name] = []
+    for name in names_list:
+        """writes lists to {name}.py"""
+        with open (name, 'wt') as filename:
+            simplejson.dump( master_dict[name],filename)
+        print (len(master_dict[name])) # logs number of elements
 
-# print (master_dict,names_list)
+    for name in names_list:
+        """adds name before list in each file"""
+        with open(name, 'r+') as f:
+            content = f.read()
+            f.seek(0, 0)
+            f.write( name[:-3] + ' = ' + content)
 
-start = 0
-end = length_of_sublist
-
-for x in range(number_of_sublists):
-    if x == number_of_sublists - 1:
-        master_dict[names_list[x]] = big_list[start:]
-    else:        
-        master_dict[names_list[x]] = big_list[start:end]
-        start += length_of_sublist
-        end += length_of_sublist
-
-for name in names_list:
-    with open (name+'.py', 'wt') as filename:
-        simplejson.dump(master_dict[name],filename)
-    print (len(master_dict[name]))
+    with open('names_list.py', 'wt') as filename:
+        simplejson.dump( names_list,filename)
 
 
-print (names_list)
+        
+        
+# from asin_list1 import asin_list1
+# print (len(asin_list1))
+
+big_list_splitter(AsinList,10)
