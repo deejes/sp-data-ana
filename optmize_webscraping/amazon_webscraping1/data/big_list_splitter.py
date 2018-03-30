@@ -2,10 +2,10 @@ import math
 import simplejson
 from asin_list_original import AsinList
 
-""" This function takes a python list and splits it up into n sublists,
-and writes each to a file. """
 
 def big_list_splitter(big_list,number_of_sublists):
+    """ Takes a python list and splits it up into n sublists,
+    and writes each to a file. """
     length_of_sublists = math.floor(len(big_list)/number_of_sublists)
     master_dict = {}
     names_list = []
