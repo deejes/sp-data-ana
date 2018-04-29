@@ -14,7 +14,8 @@ def echo(input_list, errors_output_file, results_output_file):
         myfile.write("hello results file!")
     
 
-for x in names_list:
+# for x in names_list:
+
 a = [1,2,3]
 b = "errors.txt"
 c = "results.txt"
